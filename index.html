@@ -355,10 +355,58 @@ footer {
   background:transparent;
 }
 
-/* ─── MOBILE NAV ─────────────────────────────────────────────────── */
+/* ─── MOBILE — comprehensive fixes ──────────────────────────────── */
 @media(max-width:640px){
   .nav-links { display:none; }
+
+  /* sections */
+  .section { padding: 52px 16px; }
+  .section-title { font-size: clamp(26px,7vw,38px); margin-bottom:18px; }
+
+  /* hero */
+  .hero { padding: 80px 16px 60px; }
+  .hero-virus { font-size: 56px; }
+  .hero-stat-row { gap:10px; }
+  .hero-stat { padding: 12px 16px; }
+  .hero-stat-num { font-size: 22px; }
+
+  /* step flow — fix text overflow */
+  .step { gap: 12px; }
+  .step-num { width:34px; height:34px; font-size:14px; flex-shrink:0; }
+  .step-name { font-size:14px; }
+  .step-txt { font-size:12px; }
+  .step-body { padding: 4px 0 18px; }
+
+  /* virology box */
+  .viro-box { border-radius:12px; margin-top:12px; }
+
+  /* card text */
+  .card { padding:16px 14px; }
+  .blist li { font-size:12px; }
+
+  /* fact rows */
+  .fact-val { font-size:16px; }
+
+  /* detection items */
+  .detect-txt { font-size:12px; }
+
+  /* precaution cards */
+  .prec-grid { grid-template-columns:1fr; }
+  .prec-card { padding:14px; }
+
+  /* footer */
+  .footer-grid { flex-direction:column; align-items:center; text-align:center; gap:16px; }
+  .footer-block { text-align:center; }
+  .footer-sig-big { font-size:clamp(20px,8vw,36px); }
 }
+
+/* ─── TWO-COLUMN GRIDS → single col on mobile ───────────────────── */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+@media(max-width:640px){ .two-col { grid-template-columns:1fr; } }
 
 /* ─── SCROLLBAR ──────────────────────────────────────────────────── */
 ::-webkit-scrollbar {width:5px;}
@@ -409,6 +457,157 @@ footer {
               transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .step.visible { opacity: 1; transform: translateX(0); }
+
+/* ─── YOUTUBE EMBEDS ─────────────────────────────────────────────── */
+.yt-section-label {
+  font-family:'Montserrat',sans-serif; font-weight:800;
+  font-size:10px; text-transform:uppercase; letter-spacing:2px;
+  color:var(--amber); margin-bottom:10px;
+  display:flex; align-items:center; gap:8px;
+}
+.yt-section-label::before { content:'▶'; font-size:9px; }
+.yt-title {
+  font-family:'Montserrat',sans-serif; font-weight:700;
+  font-size:13px; color:#fff; margin-bottom:6px;
+}
+.yt-desc {
+  font-size:11px; color:rgba(255,255,255,0.5); margin-bottom:12px; line-height:1.5;
+}
+.yt-wrap {
+  position:relative; width:100%; padding-bottom:56.25%;
+  border-radius:14px; overflow:hidden;
+  border:1px solid rgba(255,255,255,0.08);
+  background:#000;
+}
+.yt-wrap iframe {
+  position:absolute; top:0; left:0;
+  width:100%; height:100%; border:none;
+}
+
+/* ─── CLINICAL SLIDES SECTION ────────────────────────────────────── */
+.slides-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 20px;
+}
+@media(max-width:700px){ .slides-grid { grid-template-columns:1fr 1fr; } }
+@media(max-width:400px){ .slides-grid { grid-template-columns:1fr; } }
+
+.slide-card {
+  background: rgba(0,0,0,0.4);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius:14px; overflow:hidden;
+  cursor:pointer;
+  transition: transform 0.3s cubic-bezier(0.22,1,0.36,1),
+              border-color 0.3s ease;
+}
+.slide-card:hover { transform:translateY(-4px); border-color:rgba(29,158,117,0.4); }
+
+.slide-img-wrap {
+  width:100%; aspect-ratio:4/3; overflow:hidden;
+  background: linear-gradient(135deg, #0a2010, #0d3020);
+  display:flex; align-items:center; justify-content:center;
+  position:relative;
+}
+.slide-img-wrap img {
+  width:100%; height:100%; object-fit:cover;
+  transition:transform 0.4s ease;
+}
+.slide-card:hover .slide-img-wrap img { transform:scale(1.04); }
+
+/* fallback placeholder when image hasn't loaded */
+.slide-placeholder {
+  width:100%; height:100%;
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  gap:8px; padding:16px; text-align:center;
+}
+.slide-placeholder-icon { font-size:36px; opacity:0.6; }
+.slide-placeholder-txt {
+  font-family:'Montserrat',sans-serif; font-size:10px; font-weight:700;
+  color:rgba(255,255,255,0.3); letter-spacing:1px; text-transform:uppercase;
+}
+
+.slide-badge {
+  position:absolute; top:8px; left:8px;
+  background:rgba(0,0,0,0.7); border-radius:6px;
+  padding:3px 8px;
+  font-family:'Montserrat',sans-serif; font-size:9px; font-weight:700;
+  letter-spacing:1px; text-transform:uppercase;
+}
+.badge-gross { color:#F0997B; border:1px solid rgba(240,153,123,0.3); }
+.badge-histo { color:var(--green-lt); border:1px solid rgba(93,202,165,0.3); }
+.badge-struct{ color:var(--amber-lt); border:1px solid rgba(239,159,39,0.3); }
+
+.slide-info { padding:12px 14px; }
+.slide-name {
+  font-family:'Montserrat',sans-serif; font-weight:800;
+  font-size:12px; color:#fff; margin-bottom:4px; line-height:1.3;
+}
+.slide-caption { font-size:11px; color:rgba(255,255,255,0.5); line-height:1.45; }
+
+/* lightbox */
+#lightbox {
+  display:none; position:fixed; inset:0; z-index:999;
+  background:rgba(0,0,0,0.92); backdrop-filter:blur(8px);
+  align-items:center; justify-content:center; flex-direction:column;
+  padding:24px;
+}
+#lightbox.open { display:flex; }
+#lightbox img {
+  max-width:90vw; max-height:75vh;
+  object-fit:contain; border-radius:12px;
+  border:1px solid rgba(255,255,255,0.1);
+}
+#lightbox-caption {
+  margin-top:16px; max-width:600px; text-align:center;
+  font-size:13px; color:rgba(255,255,255,0.7); line-height:1.6;
+}
+#lightbox-title {
+  font-family:'Montserrat',sans-serif; font-weight:800;
+  font-size:16px; color:#fff; margin-bottom:6px;
+}
+#lightbox-close {
+  position:absolute; top:20px; right:24px;
+  font-size:28px; color:rgba(255,255,255,0.5); cursor:pointer;
+  background:none; border:none; line-height:1;
+  transition:color 0.2s;
+}
+#lightbox-close:hover { color:#fff; }
+
+/* virology structure diagram */
+.virus-struct {
+  background:rgba(0,0,0,0.35);
+  border:1px solid rgba(239,159,39,0.2);
+  border-radius:16px; padding:24px;
+  margin-bottom:14px;
+}
+.struct-title {
+  font-family:'Montserrat',sans-serif; font-weight:800;
+  font-size:12px; text-transform:uppercase; letter-spacing:1.5px;
+  color:var(--amber); margin-bottom:16px;
+  display:flex; align-items:center; gap:8px;
+}
+.struct-item {
+  display:flex; gap:14px; align-items:flex-start;
+  padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.06);
+}
+.struct-item:last-child { border-bottom:none; padding-bottom:0; }
+.struct-icon {
+  width:36px; height:36px; border-radius:10px; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center; font-size:18px;
+}
+.si-env   { background:rgba(29,158,117,0.2);  border:1px solid rgba(29,158,117,0.35); }
+.si-spike { background:rgba(239,159,39,0.2);  border:1px solid rgba(239,159,39,0.35); }
+.si-cap   { background:rgba(99,153,34,0.2);   border:1px solid rgba(99,153,34,0.35);  }
+.si-core  { background:rgba(153,60,29,0.2);   border:1px solid rgba(153,60,29,0.35);  }
+.si-rna   { background:rgba(29,158,158,0.2);  border:1px solid rgba(29,158,158,0.35); }
+.struct-name {
+  font-family:'Montserrat',sans-serif; font-weight:800;
+  font-size:12px; color:#fff; margin-bottom:3px;
+}
+.struct-desc { font-size:11px; color:rgba(255,255,255,0.6); line-height:1.55; }
 </style>
 </head>
 <body>
@@ -426,6 +625,7 @@ footer {
     <a href="#transmission">Transmission</a>
     <a href="#mechanism">Mechanism</a>
     <a href="#symptoms">Symptoms</a>
+    <a href="#clinical">Slides</a>
     <a href="#detection">Detection</a>
     <a href="#prevention">Prevention</a>
   </div>
@@ -523,7 +723,7 @@ footer {
     <div class="section-eyebrow fade-up">Panel 3 · Pathophysiology</div>
     <h2 class="section-title fade-up">How is HCV<br>Killing You?</h2>
 
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;" class="fade-up">
+    <div class="two-col fade-up">
       <div>
         <div class="card" style="margin-bottom:0;">
           <div class="card-h"><div class="card-h-dot"></div>Viral Replication Cycle</div>
@@ -635,10 +835,38 @@ footer {
         </div>
       </div>
     </div>
+
+    <!-- YouTube Videos -->
+    <div style="margin-top:32px;">
+      <div class="yt-section-label fade-up">Watch — HCV in Action</div>
+      <div class="two-col fade-up">
+        <div>
+          <div class="yt-title">Microbiology — Hepatitis C Virus</div>
+          <div class="yt-desc">Armando Hasudungan's detailed walkthrough of HCV structure, transmission, immune evasion, and how it causes chronic liver disease.</div>
+          <div class="yt-wrap">
+            <iframe src="https://www.youtube.com/embed/vRvyV1x2t60"
+              title="Microbiology - Hepatitis C Virus"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen loading="lazy">
+            </iframe>
+          </div>
+        </div>
+        <div>
+          <div class="yt-title">Hepatitis C — Nucleus Medical Media</div>
+          <div class="yt-desc">Animated overview of HCV infection: how the virus spreads, damages the liver, and progresses to cirrhosis and liver failure.</div>
+          <div class="yt-wrap">
+            <iframe src="https://www.youtube.com/embed/VNe0SJnWckQ"
+              title="Hepatitis C - Nucleus Medical Media"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen loading="lazy">
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
-
-<!-- ═══ SYMPTOMS ═════════════════════════════════════════════════════ -->
 <section class="section bg-olive" id="symptoms">
   <div class="section-inner">
     <div class="section-eyebrow fade-up">Panel 2 · Clinical Presentation</div>
@@ -686,13 +914,330 @@ footer {
   </div>
 </section>
 
+<!-- ═══ CLINICAL SLIDES & VIROLOGY STRUCTURE ═══════════════════════ -->
+<section class="section bg-dark" id="clinical">
+  <div class="section-inner">
+    <div class="section-eyebrow fade-up">Pathology · Virology</div>
+    <h2 class="section-title fade-up">Clinical Slides &amp;<br>Virus Structure</h2>
+
+    <!-- GROSS PATHOLOGY -->
+    <div class="fade-up" style="margin-bottom:28px;">
+      <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--red-lt);margin-bottom:14px;display:flex;align-items:center;gap:8px;">
+        <span style="width:20px;height:2px;background:var(--red-lt);display:inline-block;"></span>
+        Gross Pathology — Macroscopic Features
+      </div>
+      <div class="slides-grid">
+
+        <div class="slide-card" onclick="openLightbox(this)">
+          <div class="slide-img-wrap">
+            <img src="https://www.pathologyoutlines.com/imgau/liverhepCmanon01.jpg"
+              alt="Cirrhotic liver gross specimen" loading="lazy"
+              onerror="this.style.display='none';this.parentElement.innerHTML+='<div class=slide-placeholder><div class=slide-placeholder-icon>🫀</div><div class=slide-placeholder-txt>Cirrhotic Liver<br>Gross Specimen</div></div>'">
+            <div class="slide-badge badge-gross">Gross</div>
+          </div>
+          <div class="slide-info">
+            <div class="slide-name">Cirrhotic Liver — End Stage</div>
+            <div class="slide-caption">Nodular, shrunken liver with thick bridging fibrotic bands. Stage 4 (Batts-Ludwig). Source: PathologyOutlines.com</div>
+          </div>
+        </div>
+
+        <div class="slide-card" onclick="openLightbox(this)">
+          <div class="slide-img-wrap">
+            <img src="https://www.pathologyoutlines.com/imgau/liverhepCmanon02.jpg"
+              alt="HCV liver cirrhosis gross" loading="lazy"
+              onerror="this.style.display='none';this.parentElement.innerHTML+='<div class=slide-placeholder><div class=slide-placeholder-icon>🫀</div><div class=slide-placeholder-txt>HCV Cirrhosis<br>Gross</div></div>'">
+            <div class="slide-badge badge-gross">Gross</div>
+          </div>
+          <div class="slide-info">
+            <div class="slide-name">HCV Cirrhosis — Nodular Surface</div>
+            <div class="slide-caption">Micronodular cirrhotic pattern with regenerative nodules separated by fibrous septa. Source: PathologyOutlines.com</div>
+          </div>
+        </div>
+
+        <div class="slide-card" onclick="openLightbox(this)">
+          <div class="slide-img-wrap">
+            <!-- PMC open-access gross liver image -->
+            <img src="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3420144/bin/CRIM2012-740138.002.jpg"
+              alt="Extrahepatic HCV manifestations" loading="lazy"
+              onerror="this.style.display='none';this.parentElement.innerHTML+='<div class=slide-placeholder><div class=slide-placeholder-icon>💧</div><div class=slide-placeholder-txt>HCV Extrahepatic<br>Manifestations</div></div>'">
+            <div class="slide-badge badge-gross">Clinical</div>
+          </div>
+          <div class="slide-info">
+            <div class="slide-name">Extrahepatic Manifestations</div>
+            <div class="slide-caption">HCV affects multiple organs beyond the liver including kidneys, skin and blood vessels. Source: PMC/NIH open access</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- HISTOPATHOLOGY -->
+    <div class="fade-up" style="margin-bottom:28px;">
+      <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--green-lt);margin-bottom:14px;display:flex;align-items:center;gap:8px;">
+        <span style="width:20px;height:2px;background:var(--green-lt);display:inline-block;"></span>
+        Histopathology — Microscopic Slides (H&amp;E Stained)
+      </div>
+      <div class="slides-grid">
+
+        <div class="slide-card" onclick="openLightbox(this)">
+          <div class="slide-img-wrap">
+            <img src="https://www.pathologyoutlines.com/imgau/liverhepCmanon03.jpg"
+              alt="Chronic HCV hepatitis histology" loading="lazy"
+              onerror="this.style.display='none';this.parentElement.innerHTML+='<div class=slide-placeholder><div class=slide-placeholder-icon>🔬</div><div class=slide-placeholder-txt>Chronic Hepatitis<br>H&amp;E Slide</div></div>'">
+            <div class="slide-badge badge-histo">H&amp;E</div>
+          </div>
+          <div class="slide-info">
+            <div class="slide-name">Chronic HCV Hepatitis — Portal Inflammation</div>
+            <div class="slide-caption">H&amp;E: Lymphocytic portal infiltration with interface hepatitis. Characteristic lymphoid follicles visible. Source: PathologyOutlines.com</div>
+          </div>
+        </div>
+
+        <div class="slide-card" onclick="openLightbox(this)">
+          <div class="slide-img-wrap">
+            <img src="https://www.pathologyoutlines.com/imgau/liverhepCmanon04.jpg"
+              alt="HCV portal fibrosis histology" loading="lazy"
+              onerror="this.style.display='none';this.parentElement.innerHTML+='<div class=slide-placeholder><div class=slide-placeholder-icon>🔬</div><div class=slide-placeholder-txt>Portal Fibrosis<br>H&amp;E Slide</div></div>'">
+            <div class="slide-badge badge-histo">H&amp;E</div>
+          </div>
+          <div class="slide-info">
+            <div class="slide-name">Bridging Fibrosis — HCV Stage 3</div>
+            <div class="slide-caption">H&amp;E: Fibrous portal expansion with bridging septa. Stellate cell activation drives progressive collagen deposition. Source: PathologyOutlines.com</div>
+          </div>
+        </div>
+
+        <div class="slide-card" onclick="openLightbox(this)">
+          <div class="slide-img-wrap">
+            <!-- PMC open-access HCV histology -->
+            <img src="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8282660/bin/cancers-13-03472-g001.jpg"
+              alt="Hepatic fibrosis before after DAA therapy" loading="lazy"
+              onerror="this.style.display='none';this.parentElement.innerHTML+='<div class=slide-placeholder><div class=slide-placeholder-icon>🔬</div><div class=slide-placeholder-txt>Pre/Post DAA<br>Liver Biopsy</div></div>'">
+            <div class="slide-badge badge-histo">H&amp;E</div>
+          </div>
+          <div class="slide-info">
+            <div class="slide-name">Pre vs Post DAA Treatment Biopsy</div>
+            <div class="slide-caption">H&amp;E comparison of liver biopsy before and after direct-acting antiviral therapy, showing fibrosis regression. Source: PMC/NIH open access</div>
+          </div>
+        </div>
+
+      </div>
+      <div style="font-size:10px;color:rgba(255,255,255,0.3);margin-top:8px;font-style:italic;">
+        Images sourced from PathologyOutlines.com and NIH PubMed Central open-access publications. For educational use only.
+      </div>
+    </div>
+
+    <!-- VIRUS STRUCTURE -->
+    <div class="fade-up">
+      <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--amber-lt);margin-bottom:14px;display:flex;align-items:center;gap:8px;">
+        <span style="width:20px;height:2px;background:var(--amber-lt);display:inline-block;"></span>
+        HCV Virion — Structural Composition
+      </div>
+      <div class="two-col">
+        <!-- Component detail list -->
+        <div class="virus-struct">
+          <div class="struct-title">🦠 Virion Architecture</div>
+
+          <div class="struct-item">
+            <div class="struct-icon si-env">🧱</div>
+            <div>
+              <div class="struct-name">Lipid Envelope</div>
+              <div class="struct-desc">Derived from the host ER membrane during budding. 55–65 nm diameter. Surrounds the entire virion and carries the spike glycoproteins E1 and E2.</div>
+            </div>
+          </div>
+
+          <div class="struct-item">
+            <div class="struct-icon si-spike">📌</div>
+            <div>
+              <div class="struct-name">Glycoproteins E1 &amp; E2 (Spikes)</div>
+              <div class="struct-desc">Non-covalent heterodimers embedded in the lipid bilayer. <strong style="color:rgba(255,255,255,0.85);">E2</strong> binds CD81 and SR-B1 receptors on hepatocytes. High hypervariable region (HVR1) on E2 drives antigenic escape.</div>
+            </div>
+          </div>
+
+          <div class="struct-item">
+            <div class="struct-icon si-cap">🔵</div>
+            <div>
+              <div class="struct-name">Nucleocapsid (Core Protein)</div>
+              <div class="struct-desc">Protein shell encapsulating the RNA genome. Core protein also associates with host lipid droplets — critical for virion assembly and a contributor to immune evasion and steatosis.</div>
+            </div>
+          </div>
+
+          <div class="struct-item">
+            <div class="struct-icon si-rna">🧬</div>
+            <div>
+              <div class="struct-name">+ssRNA Genome (~9.6 kb)</div>
+              <div class="struct-desc">Positive-sense single-stranded RNA. Translated directly as mRNA into a single ~3,010 aa polyprotein. Flanked by highly conserved 5′UTR (contains IRES) and 3′UTR.</div>
+            </div>
+          </div>
+
+          <div class="struct-item">
+            <div class="struct-icon si-core">⚙️</div>
+            <div>
+              <div class="struct-name">Non-Structural Proteins (NS2–NS5B)</div>
+              <div class="struct-desc"><strong style="color:rgba(255,255,255,0.85);">NS3/4A</strong> serine protease + helicase · <strong style="color:rgba(255,255,255,0.85);">NS4B</strong> membrane web · <strong style="color:rgba(255,255,255,0.85);">NS5A</strong> replication scaffold (Ledipasvir target) · <strong style="color:rgba(255,255,255,0.85);">NS5B</strong> RdRp (Sofosbuvir target)</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Detailed labeled virion SVG -->
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <svg viewBox="0 0 360 340" width="100%" style="display:block;">
+            <defs>
+              <radialGradient id="envGrad" cx="42%" cy="38%">
+                <stop offset="0%" stop-color="#2a5a3a"/>
+                <stop offset="100%" stop-color="#0a1f12"/>
+              </radialGradient>
+              <radialGradient id="capsidGrad" cx="42%" cy="38%">
+                <stop offset="0%" stop-color="#1a4a2a"/>
+                <stop offset="100%" stop-color="#071510"/>
+              </radialGradient>
+              <radialGradient id="rnaGrad" cx="50%" cy="50%">
+                <stop offset="0%" stop-color="rgba(29,158,158,0.3)"/>
+                <stop offset="100%" stop-color="rgba(29,158,158,0.05)"/>
+              </radialGradient>
+              <filter id="glow">
+                <feGaussianBlur stdDeviation="3" result="blur"/>
+                <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+              </filter>
+            </defs>
+
+            <!-- outer lipid envelope -->
+            <circle cx="155" cy="165" r="118" fill="url(#envGrad)" opacity="0.95"/>
+            <!-- envelope highlight -->
+            <circle cx="155" cy="165" r="118" fill="none" stroke="rgba(239,159,39,0.5)" stroke-width="14" opacity="0.6"/>
+            <circle cx="155" cy="165" r="112" fill="none" stroke="rgba(239,159,39,0.2)" stroke-width="2"/>
+            <circle cx="155" cy="165" r="124" fill="none" stroke="rgba(239,159,39,0.1)" stroke-width="2"/>
+
+            <!-- E1/E2 spike proteins around the envelope -->
+            <!-- spike = small rounded rectangle at angle -->
+            <g fill="#EF9F27" filter="url(#glow)">
+              <!-- top -->
+              <ellipse cx="155" cy="36" rx="6" ry="10" opacity="0.9"/>
+              <ellipse cx="155" cy="27" rx="4" ry="5" opacity="0.7"/>
+              <!-- top-right -->
+              <ellipse cx="218" cy="55" rx="6" ry="10" transform="rotate(48,218,55)" opacity="0.9"/>
+              <ellipse cx="225" cy="47" rx="4" ry="5" transform="rotate(48,225,47)" opacity="0.7"/>
+              <!-- right -->
+              <ellipse cx="261" cy="112" rx="6" ry="10" transform="rotate(80,261,112)" opacity="0.9"/>
+              <ellipse cx="270" cy="108" rx="4" ry="5" transform="rotate(80,270,108)" opacity="0.7"/>
+              <!-- right-bottom -->
+              <ellipse cx="267" cy="185" rx="6" ry="10" transform="rotate(110,267,185)" opacity="0.9"/>
+              <ellipse cx="276" cy="183" rx="4" ry="5" transform="rotate(110,276,183)" opacity="0.7"/>
+              <!-- bottom-right -->
+              <ellipse cx="224" cy="248" rx="6" ry="10" transform="rotate(140,224,248)" opacity="0.9"/>
+              <ellipse cx="228" cy="257" rx="4" ry="5" transform="rotate(140,228,257)" opacity="0.7"/>
+              <!-- bottom -->
+              <ellipse cx="155" cy="272" rx="6" ry="10" opacity="0.9"/>
+              <ellipse cx="155" cy="281" rx="4" ry="5" opacity="0.7"/>
+              <!-- bottom-left -->
+              <ellipse cx="87" cy="248" rx="6" ry="10" transform="rotate(-140,87,248)" opacity="0.9"/>
+              <ellipse cx="83" cy="257" rx="4" ry="5" transform="rotate(-140,83,257)" opacity="0.7"/>
+              <!-- left-bottom -->
+              <ellipse cx="44" cy="185" rx="6" ry="10" transform="rotate(-110,44,185)" opacity="0.9"/>
+              <ellipse cx="35" cy="183" rx="4" ry="5" transform="rotate(-110,35,183)" opacity="0.7"/>
+              <!-- left -->
+              <ellipse cx="50" cy="112" rx="6" ry="10" transform="rotate(-80,50,112)" opacity="0.9"/>
+              <ellipse cx="41" cy="108" rx="4" ry="5" transform="rotate(-80,41,108)" opacity="0.7"/>
+              <!-- top-left -->
+              <ellipse cx="93" cy="55" rx="6" ry="10" transform="rotate(-48,93,55)" opacity="0.9"/>
+              <ellipse cx="86" cy="47" rx="4" ry="5" transform="rotate(-48,86,47)" opacity="0.7"/>
+            </g>
+
+            <!-- nucleocapsid -->
+            <circle cx="155" cy="165" r="72" fill="url(#capsidGrad)"/>
+            <circle cx="155" cy="165" r="72" fill="none" stroke="rgba(99,153,34,0.55)" stroke-width="3"/>
+            <circle cx="155" cy="165" r="68" fill="none" stroke="rgba(99,153,34,0.2)" stroke-width="1"/>
+            <!-- capsid texture dots -->
+            <g fill="rgba(99,153,34,0.25)">
+              <circle cx="155" cy="96" r="4"/><circle cx="197" cy="111" r="4"/>
+              <circle cx="215" cy="152" r="4"/><circle cx="200" cy="195" r="4"/>
+              <circle cx="163" cy="221" r="4"/><circle cx="118" cy="218" r="4"/>
+              <circle cx="91" cy="191" r="4"/><circle cx="88" cy="148" r="4"/>
+              <circle cx="107" cy="111" r="4"/><circle cx="148" cy="96" r="4"/>
+            </g>
+
+            <!-- RNA genome (coiled inside) -->
+            <circle cx="155" cy="165" r="44" fill="url(#rnaGrad)"/>
+            <path d="M130,148 Q142,130 155,148 Q168,166 180,148 Q168,182 155,170 Q142,158 130,170 Q142,186 155,178 Q168,170 180,178"
+              fill="none" stroke="rgba(29,158,158,0.85)" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M138,158 Q148,142 158,158 Q168,174 178,158"
+              fill="none" stroke="rgba(29,158,158,0.5)" stroke-width="1.5" stroke-linecap="round"/>
+
+            <!-- LABELS with leader lines -->
+            <!-- E1/E2 spikes label -->
+            <line x1="225" y1="47" x2="300" y2="30" stroke="rgba(239,159,39,0.5)" stroke-width="1" stroke-dasharray="3 2"/>
+            <text x="304" y="22" fill="#EF9F27" font-size="10" font-family="Montserrat,sans-serif" font-weight="700">E1/E2</text>
+            <text x="304" y="34" fill="rgba(239,159,39,0.65)" font-size="8.5" font-family="Montserrat,sans-serif">Glycoproteins</text>
+
+            <!-- Lipid envelope label -->
+            <line x1="273" y1="145" x2="310" y2="130" stroke="rgba(239,159,39,0.4)" stroke-width="1" stroke-dasharray="3 2"/>
+            <text x="314" y="127" fill="rgba(239,159,39,0.8)" font-size="9.5" font-family="Montserrat,sans-serif" font-weight="700">Lipid</text>
+            <text x="314" y="139" fill="rgba(239,159,39,0.8)" font-size="9.5" font-family="Montserrat,sans-serif" font-weight="700">Envelope</text>
+
+            <!-- Nucleocapsid label -->
+            <line x1="223" y1="198" x2="310" y2="210" stroke="rgba(99,153,34,0.5)" stroke-width="1" stroke-dasharray="3 2"/>
+            <text x="314" y="207" fill="rgba(99,153,34,0.9)" font-size="9.5" font-family="Montserrat,sans-serif" font-weight="700">Nucleocapsid</text>
+            <text x="314" y="219" fill="rgba(99,153,34,0.65)" font-size="8.5" font-family="Montserrat,sans-serif">(Core protein)</text>
+
+            <!-- RNA label -->
+            <line x1="155" y1="210" x2="155" y2="290" stroke="rgba(29,158,158,0.45)" stroke-width="1" stroke-dasharray="3 2"/>
+            <text x="110" y="305" fill="rgba(29,158,158,0.9)" font-size="10" font-family="Montserrat,sans-serif" font-weight="700">+ssRNA (~9.6 kb)</text>
+
+            <!-- Size indicator -->
+            <text x="10" y="320" fill="rgba(255,255,255,0.2)" font-size="8" font-family="Montserrat,sans-serif">55–65 nm diameter</text>
+            <text x="10" y="332" fill="rgba(255,255,255,0.15)" font-size="8" font-family="Montserrat,sans-serif">Flaviviridae · Hepacivirus</text>
+          </svg>
+
+          <!-- Genome map -->
+          <div style="background:rgba(0,0,0,0.35);border-radius:12px;padding:14px 16px;">
+            <div style="font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;color:rgba(255,255,255,0.4);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;">Genome Organisation</div>
+            <div style="display:flex;align-items:center;gap:0;overflow-x:auto;padding-bottom:4px;">
+              <div style="font-size:9px;color:rgba(255,255,255,0.4);font-family:'Montserrat',sans-serif;flex-shrink:0;margin-right:4px;">5′UTR</div>
+              <div style="background:rgba(99,153,34,0.35);border:1px solid rgba(99,153,34,0.5);border-radius:4px;padding:4px 6px;font-size:9px;font-family:'Montserrat',sans-serif;font-weight:700;color:#8BC34A;white-space:nowrap;flex-shrink:0;">Core</div>
+              <div style="width:2px;background:rgba(255,255,255,0.1);height:20px;flex-shrink:0;"></div>
+              <div style="background:rgba(29,158,117,0.3);border:1px solid rgba(29,158,117,0.4);border-radius:4px;padding:4px 6px;font-size:9px;font-family:'Montserrat',sans-serif;font-weight:700;color:#5DCAA5;white-space:nowrap;flex-shrink:0;">E1</div>
+              <div style="width:2px;background:rgba(255,255,255,0.1);height:20px;flex-shrink:0;"></div>
+              <div style="background:rgba(29,158,117,0.3);border:1px solid rgba(29,158,117,0.4);border-radius:4px;padding:4px 6px;font-size:9px;font-family:'Montserrat',sans-serif;font-weight:700;color:#5DCAA5;white-space:nowrap;flex-shrink:0;">E2</div>
+              <div style="width:2px;background:rgba(255,255,255,0.1);height:20px;flex-shrink:0;"></div>
+              <div style="background:rgba(239,159,39,0.2);border:1px solid rgba(239,159,39,0.3);border-radius:4px;padding:4px 5px;font-size:9px;font-family:'Montserrat',sans-serif;font-weight:700;color:#EF9F27;white-space:nowrap;flex-shrink:0;">p7</div>
+              <div style="width:2px;background:rgba(255,255,255,0.1);height:20px;flex-shrink:0;"></div>
+              <div style="background:rgba(239,159,39,0.2);border:1px solid rgba(239,159,39,0.3);border-radius:4px;padding:4px 5px;font-size:9px;font-family:'Montserrat',sans-serif;font-weight:700;color:#EF9F27;white-space:nowrap;flex-shrink:0;">NS2</div>
+              <div style="width:2px;background:rgba(255,255,255,0.1);height:20px;flex-shrink:0;"></div>
+              <div style="background:rgba(183,110,42,0.3);border:1px solid rgba(183,110,42,0.5);border-radius:4px;padding:4px 5px;font-size:9px;font-family:'Montserrat',sans-serif;font-weight:700;color:#FAC775;white-space:nowrap;flex-shrink:0;">NS3</div>
+              <div style="width:2px;background:rgba(255,255,255,0.1);height:20px;flex-shrink:0;"></div>
+              <div style="background:rgba(183,110,42,0.3);border:1px solid rgba(183,110,42,0.5);border-radius:4px;padding:4px 5px;font-size:9px;font-family:'Montserrat',sans-serif;font-weight:700;color:#FAC775;white-space:nowrap;flex-shrink:0;">NS4A</div>
+              <div style="width:2px;background:rgba(255,255,255,0.1);height:20px;flex-shrink:0;"></div>
+              <div style="background:rgba(153,60,29,0.3);border:1px solid rgba(153,60,29,0.5);border-radius:4px;padding:4px 5px;font-size:9px;font-family:'Montserrat',sans-serif;font-weight:700;color:#F0997B;white-space:nowrap;flex-shrink:0;">NS4B</div>
+              <div style="width:2px;background:rgba(255,255,255,0.1);height:20px;flex-shrink:0;"></div>
+              <div style="background:rgba(153,60,29,0.4);border:1px solid rgba(153,60,29,0.6);border-radius:4px;padding:4px 5px;font-size:9px;font-family:'Montserrat',sans-serif;font-weight:700;color:#F0997B;white-space:nowrap;flex-shrink:0;">NS5A ◀</div>
+              <div style="width:2px;background:rgba(255,255,255,0.1);height:20px;flex-shrink:0;"></div>
+              <div style="background:rgba(122,45,21,0.5);border:2px solid rgba(122,45,21,0.8);border-radius:4px;padding:4px 5px;font-size:9px;font-family:'Montserrat',sans-serif;font-weight:700;color:#FFB085;white-space:nowrap;flex-shrink:0;">NS5B ◀</div>
+              <div style="font-size:9px;color:rgba(255,255,255,0.4);font-family:'Montserrat',sans-serif;flex-shrink:0;margin-left:4px;">3′UTR</div>
+            </div>
+            <div style="margin-top:8px;font-size:9px;color:rgba(255,255,255,0.3);font-family:'Montserrat',sans-serif;">◀ = Drug target for DAAs (Ledipasvir → NS5A · Sofosbuvir → NS5B)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- lightbox overlay -->
+<div id="lightbox" onclick="closeLightbox()">
+  <button id="lightbox-close" onclick="closeLightbox()">✕</button>
+  <img id="lightbox-img" src="" alt="">
+  <div>
+    <div id="lightbox-title"></div>
+    <div id="lightbox-caption"></div>
+  </div>
+</div>
+
 <!-- ═══ DETECTION ════════════════════════════════════════════════════ -->
 <section class="section bg-teal" id="detection">
   <div class="section-inner">
     <div class="section-eyebrow fade-up">Panel 6 · HCV, There You Are!</div>
     <h2 class="section-title fade-up">Detection<br>&amp; Treatment</h2>
 
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;" class="fade-up">
+    <div class="two-col fade-up">
       <div>
         <div class="card">
           <div class="card-h"><div class="card-h-dot" style="background:var(--teal);"></div>Detection Methods</div>
@@ -819,7 +1364,7 @@ footer {
       <div class="footer-block">
         <div class="footer-lbl">Semester</div>
         <div class="footer-val">Second Semester</div>
-        <div class="footer-sub">Academic Year 2025–2026</div>
+        <div class="footer-sub">Academic Year 2024–2025</div>
       </div>
       <div class="footer-block">
         <div class="footer-lbl">Team</div>
@@ -835,6 +1380,25 @@ footer {
 </footer>
 
 <script>
+// ── Lightbox ──────────────────────────────────────────────────────
+function openLightbox(card) {
+  const img   = card.querySelector('img');
+  const name  = card.querySelector('.slide-name')?.textContent || '';
+  const cap   = card.querySelector('.slide-caption')?.textContent || '';
+  if (!img) return;
+  document.getElementById('lightbox-img').src = img.src;
+  document.getElementById('lightbox-img').alt = img.alt;
+  document.getElementById('lightbox-title').textContent = name;
+  document.getElementById('lightbox-caption').textContent = cap;
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeLightbox(); });
+
 // ── Scroll progress bar ──────────────────────────────────────────
 const bar = document.getElementById('progress-bar');
 function updateBar() {
