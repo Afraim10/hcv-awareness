@@ -416,6 +416,197 @@ footer {
   .virion-svg { max-width:100% !important; }
 }
 
+/* ─── HAMBURGER MENU (mobile) ────────────────────────────────────── */
+.hamburger {
+  display:none; flex-direction:column; gap:5px; cursor:pointer;
+  padding:8px; background:none; border:none;
+}
+.hamburger span {
+  display:block; width:22px; height:2px;
+  background:rgba(255,255,255,0.7); border-radius:2px;
+  transition:transform 0.3s ease, opacity 0.3s ease;
+}
+.hamburger.open span:nth-child(1){ transform:translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2){ opacity:0; }
+.hamburger.open span:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
+@media(max-width:640px){ .hamburger{display:flex;} .nav-links{display:none;} }
+
+.mobile-menu {
+  display:none; position:fixed; inset:0; z-index:90;
+  background:rgba(6,18,10,0.97); backdrop-filter:blur(16px);
+  flex-direction:column; align-items:center; justify-content:center; gap:6px;
+}
+.mobile-menu.open { display:flex; }
+.mobile-menu a {
+  font-family:'Montserrat',sans-serif; font-weight:800; font-size:20px;
+  text-transform:uppercase; letter-spacing:2px;
+  color:rgba(255,255,255,0.6); text-decoration:none;
+  padding:14px 40px; border-radius:12px;
+  transition:color 0.2s, background 0.2s;
+}
+.mobile-menu a:hover, .mobile-menu a:active { color:var(--amber); background:rgba(239,159,39,0.08); }
+
+/* ─── BACK TO TOP ────────────────────────────────────────────────── */
+#back-top {
+  position:fixed; bottom:24px; right:20px; z-index:150;
+  width:44px; height:44px; border-radius:50%;
+  background:linear-gradient(135deg,var(--green),var(--green-dk));
+  border:none; cursor:pointer; color:#fff; font-size:18px;
+  display:flex; align-items:center; justify-content:center;
+  box-shadow:0 4px 20px rgba(29,158,117,0.4);
+  opacity:0; transform:translateY(10px);
+  transition:opacity 0.3s, transform 0.3s;
+  pointer-events:none;
+}
+#back-top.visible { opacity:1; transform:translateY(0); pointer-events:all; }
+#back-top:hover { background:linear-gradient(135deg,var(--amber),var(--amber-dk)); }
+
+/* ─── EPIDEMIOLOGY GRID ──────────────────────────────────────────── */
+.epi-grid {
+  display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:20px;
+}
+@media(max-width:700px){ .epi-grid{grid-template-columns:1fr 1fr;} }
+@media(max-width:400px){ .epi-grid{grid-template-columns:1fr;} }
+
+.epi-card {
+  background:rgba(0,0,0,0.32); border-radius:14px; padding:16px 12px;
+  border:1px solid rgba(255,255,255,0.06); text-align:center;
+  transition:transform 0.3s cubic-bezier(0.22,1,0.36,1), border-color 0.3s;
+}
+.epi-card:hover { transform:translateY(-3px); border-color:rgba(29,158,117,0.35); }
+.epi-region {
+  font-family:'Montserrat',sans-serif; font-weight:800; font-size:10px;
+  text-transform:uppercase; letter-spacing:1px; color:rgba(255,255,255,0.4); margin-bottom:8px;
+}
+.epi-num {
+  font-family:'Montserrat',sans-serif; font-weight:900;
+  font-size:26px; color:var(--amber); line-height:1; margin-bottom:4px;
+}
+.epi-label { font-size:11px; color:rgba(255,255,255,0.55); line-height:1.4; }
+.epi-bar-wrap { margin-top:10px; height:4px; background:rgba(255,255,255,0.08); border-radius:2px; overflow:hidden; }
+.epi-bar {
+  height:100%; border-radius:2px;
+  background:linear-gradient(90deg,var(--green),var(--amber));
+  width:0%; transition:width 1.4s cubic-bezier(0.22,1,0.36,1);
+}
+
+.burden-strip {
+  background:rgba(0,0,0,0.28); border-radius:14px; padding:20px 22px;
+  border:1px solid rgba(239,159,39,0.12);
+}
+.burden-row { display:flex; align-items:flex-start; gap:14px; margin-bottom:12px; }
+.burden-row:last-child { margin-bottom:0; }
+.burden-icon { font-size:22px; flex-shrink:0; width:32px; text-align:center; margin-top:1px; }
+.burden-txt { font-size:13px; color:rgba(255,255,255,0.78); line-height:1.6; }
+.burden-txt strong { color:#fff; }
+
+/* ─── QUIZ ───────────────────────────────────────────────────────── */
+.quiz-wrap { max-width:660px; margin:0 auto; }
+.quiz-prog-bg {
+  height:5px; background:rgba(255,255,255,0.08); border-radius:3px;
+  overflow:hidden; margin-bottom:6px;
+}
+.quiz-prog-fill {
+  height:100%; background:linear-gradient(90deg,var(--green),var(--amber));
+  border-radius:3px; width:0%; transition:width 0.5s cubic-bezier(0.22,1,0.36,1);
+}
+.quiz-q-count {
+  font-family:'Montserrat',sans-serif; font-size:10px; font-weight:700;
+  color:rgba(255,255,255,0.35); letter-spacing:1px; margin-bottom:20px;
+}
+.quiz-card {
+  background:rgba(0,0,0,0.32); border-radius:18px; padding:28px 24px;
+  border:1px solid rgba(255,255,255,0.08);
+}
+.quiz-q {
+  font-family:'Montserrat',sans-serif; font-weight:800;
+  font-size:16px; color:#fff; line-height:1.5; margin-bottom:20px;
+}
+.quiz-opts { display:flex; flex-direction:column; gap:10px; }
+.quiz-opt {
+  background:rgba(255,255,255,0.04); border:1.5px solid rgba(255,255,255,0.1);
+  border-radius:12px; padding:13px 16px; cursor:pointer;
+  font-family:'Montserrat',sans-serif; font-weight:600; font-size:13px;
+  color:rgba(255,255,255,0.8); text-align:left; width:100%;
+  display:flex; align-items:center; gap:12px;
+  transition:background 0.2s, border-color 0.2s, color 0.2s;
+}
+.quiz-opt:hover:not(:disabled) { background:rgba(29,158,117,0.12); border-color:rgba(29,158,117,0.45); color:#fff; }
+.quiz-opt.correct { background:rgba(29,158,117,0.2); border-color:var(--green); color:#fff; }
+.quiz-opt.wrong   { background:rgba(153,60,29,0.2);  border-color:var(--red);   color:rgba(255,255,255,0.6); }
+.quiz-opt:disabled { cursor:default; }
+.opt-letter {
+  width:26px; height:26px; border-radius:50%; flex-shrink:0;
+  background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.14);
+  display:flex; align-items:center; justify-content:center;
+  font-size:10px; font-weight:800;
+}
+.quiz-feedback {
+  margin-top:14px; padding:13px 16px; border-radius:10px;
+  font-size:13px; line-height:1.6; display:none;
+}
+.quiz-feedback.show { display:block; }
+.quiz-feedback.ok  { background:rgba(29,158,117,0.15); border:1px solid rgba(29,158,117,0.3); color:rgba(255,255,255,0.85); }
+.quiz-feedback.bad { background:rgba(153,60,29,0.15);  border:1px solid rgba(153,60,29,0.3);  color:rgba(255,255,255,0.85); }
+.quiz-next {
+  margin-top:16px; width:100%;
+  background:linear-gradient(135deg,var(--green),var(--green-dk));
+  border:none; border-radius:12px; padding:14px;
+  font-family:'Montserrat',sans-serif; font-weight:800; font-size:12px;
+  letter-spacing:1.5px; text-transform:uppercase; color:#fff; cursor:pointer;
+  transition:opacity 0.2s, transform 0.2s; display:none;
+}
+.quiz-next.show { display:block; }
+.quiz-next:hover { opacity:0.85; transform:translateY(-1px); }
+.quiz-result { text-align:center; padding:32px 16px; display:none; }
+.quiz-result.show { display:block; }
+.quiz-score-big {
+  font-family:'Montserrat',sans-serif; font-weight:900;
+  font-size:72px; color:var(--amber); line-height:1; margin-bottom:6px;
+}
+.quiz-score-sub {
+  font-family:'Montserrat',sans-serif; font-weight:700;
+  font-size:13px; color:rgba(255,255,255,0.5); margin-bottom:18px;
+}
+.quiz-score-msg {
+  font-size:13px; color:rgba(255,255,255,0.75); line-height:1.7;
+  max-width:420px; margin:0 auto 24px;
+}
+.quiz-restart {
+  background:rgba(239,159,39,0.12); border:1.5px solid rgba(239,159,39,0.4);
+  border-radius:12px; padding:12px 28px;
+  font-family:'Montserrat',sans-serif; font-weight:800; font-size:11px;
+  letter-spacing:1.5px; text-transform:uppercase; color:var(--amber);
+  cursor:pointer; transition:background 0.2s;
+}
+.quiz-restart:hover { background:rgba(239,159,39,0.22); }
+
+/* ─── TEAM GRID ──────────────────────────────────────────────────── */
+.team-grid {
+  display:grid; grid-template-columns:repeat(5,1fr); gap:12px; margin-bottom:24px;
+}
+@media(max-width:700px){ .team-grid{grid-template-columns:repeat(3,1fr);} }
+@media(max-width:380px){ .team-grid{grid-template-columns:repeat(2,1fr);} }
+
+.team-card {
+  background:rgba(0,0,0,0.3); border-radius:14px; padding:16px 10px;
+  border:1px solid rgba(255,255,255,0.06); text-align:center;
+  transition:transform 0.3s cubic-bezier(0.22,1,0.36,1), border-color 0.3s;
+}
+.team-card:hover { transform:translateY(-4px); border-color:rgba(29,158,117,0.4); }
+.team-avatar {
+  width:50px; height:50px; border-radius:50%; margin:0 auto 10px;
+  background:linear-gradient(135deg,var(--green-dk),var(--green));
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Montserrat',sans-serif; font-weight:900; font-size:17px; color:#fff;
+  border:2px solid rgba(29,158,117,0.35);
+}
+.team-name {
+  font-family:'Montserrat',sans-serif; font-weight:800;
+  font-size:10.5px; color:#fff; line-height:1.3; margin-bottom:3px;
+}
+.team-role { font-size:9.5px; color:rgba(255,255,255,0.38); font-family:'Montserrat',sans-serif; font-weight:600; }
+
 /* ─── SCROLLBAR ──────────────────────────────────────────────────── */
 ::-webkit-scrollbar {width:5px;}
 ::-webkit-scrollbar-track {background:var(--bg);}
@@ -623,6 +814,21 @@ footer {
 <!-- scroll progress bar -->
 <div id="progress-bar"></div>
 
+<!-- mobile menu overlay -->
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#transmission" onclick="closeMobileMenu()">Transmission</a>
+  <a href="#mechanism"    onclick="closeMobileMenu()">Mechanism</a>
+  <a href="#symptoms"     onclick="closeMobileMenu()">Symptoms</a>
+  <a href="#clinical"     onclick="closeMobileMenu()">Slides</a>
+  <a href="#detection"    onclick="closeMobileMenu()">Detection</a>
+  <a href="#prevention"   onclick="closeMobileMenu()">Prevention</a>
+  <a href="#epidemiology" onclick="closeMobileMenu()">Global</a>
+  <a href="#quiz"         onclick="closeMobileMenu()">Quiz</a>
+</div>
+
+<!-- back to top -->
+<button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
+
 <!-- ═══ NAV ═══════════════════════════════════════════════════════ -->
 <nav>
   <div class="nav-brand">
@@ -636,7 +842,12 @@ footer {
     <a href="#clinical">Slides</a>
     <a href="#detection">Detection</a>
     <a href="#prevention">Prevention</a>
+    <a href="#epidemiology">Global</a>
+    <a href="#quiz">Quiz</a>
   </div>
+  <button class="hamburger" id="hamburger" aria-label="Menu" onclick="toggleMobileMenu()">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <!-- ═══ HERO ════════════════════════════════════════════════════════ -->
@@ -653,16 +864,20 @@ footer {
 
   <div class="hero-stat-row">
     <div class="hero-stat">
-      <div class="hero-stat-num">~50M</div>
+      <div class="hero-stat-num" data-count="50" data-prefix="~" data-suffix="M">~50M</div>
       <div class="hero-stat-label">People living with<br>chronic HCV</div>
     </div>
     <div class="hero-stat">
-      <div class="hero-stat-num">&gt;95%</div>
+      <div class="hero-stat-num" data-count="95" data-prefix="&gt;" data-suffix="%">~95%</div>
       <div class="hero-stat-label">Cure rate with<br>modern treatment</div>
     </div>
     <div class="hero-stat">
-      <div class="hero-stat-num">Silent</div>
-      <div class="hero-stat-label">Years of infection<br>with no symptoms</div>
+      <div class="hero-stat-num" data-count="290" data-prefix="" data-suffix="K+">290K+</div>
+      <div class="hero-stat-label">Deaths annually<br>from HCV</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num" data-count="7" data-prefix="" data-suffix=" Types">7 Types</div>
+      <div class="hero-stat-label">Genotypes of HCV<br>worldwide</div>
     </div>
   </div>
 
@@ -1345,6 +1560,170 @@ footer {
   </div>
 </section>
 
+<!-- ═══ GLOBAL EPIDEMIOLOGY ══════════════════════════════════════════ -->
+<section class="section bg-green" id="epidemiology">
+  <div class="section-inner">
+    <div class="section-eyebrow fade-up">Global Burden · WHO Data</div>
+    <h2 class="section-title fade-up">HCV Around<br>the World</h2>
+
+    <div class="epi-grid fade-up">
+      <div class="epi-card">
+        <div class="epi-region">🌍 Africa</div>
+        <div class="epi-num" data-count="10" data-suffix="M+">10M+</div>
+        <div class="epi-label">Infected — highest burden in Egypt &amp; sub-Saharan Africa</div>
+        <div class="epi-bar-wrap"><div class="epi-bar" data-width="85"></div></div>
+      </div>
+      <div class="epi-card">
+        <div class="epi-region">🌏 East Asia</div>
+        <div class="epi-num" data-count="14" data-suffix="M+">14M+</div>
+        <div class="epi-label">Infected — China has the world's largest single-country burden</div>
+        <div class="epi-bar-wrap"><div class="epi-bar" data-width="100"></div></div>
+      </div>
+      <div class="epi-card">
+        <div class="epi-region">🌍 Middle East</div>
+        <div class="epi-num" data-count="7" data-suffix="M+">7M+</div>
+        <div class="epi-label">Infected — Egypt historically had the highest prevalence globally</div>
+        <div class="epi-bar-wrap"><div class="epi-bar" data-width="60"></div></div>
+      </div>
+      <div class="epi-card">
+        <div class="epi-region">🌎 Americas</div>
+        <div class="epi-num" data-count="5" data-suffix="M+">5M+</div>
+        <div class="epi-label">Infected — rising among younger people who inject drugs</div>
+        <div class="epi-bar-wrap"><div class="epi-bar" data-width="42"></div></div>
+      </div>
+    </div>
+
+    <div class="two-col fade-up">
+      <div class="burden-strip">
+        <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:var(--amber);margin-bottom:16px;">Global Burden Facts</div>
+        <div class="burden-row">
+          <div class="burden-icon">💀</div>
+          <div class="burden-txt"><strong>290,000 deaths</strong> every year are attributed to HCV-related liver disease — mostly cirrhosis and hepatocellular carcinoma.</div>
+        </div>
+        <div class="burden-row">
+          <div class="burden-icon">🧬</div>
+          <div class="burden-txt">HCV has <strong>7 major genotypes</strong>. Genotype 1 is most common globally; Genotype 4 predominates in Egypt and the Middle East.</div>
+        </div>
+        <div class="burden-row">
+          <div class="burden-icon">🇪🇬</div>
+          <div class="burden-txt">Egypt launched the <strong>world's largest HCV screening and treatment programme</strong> in 2018–2019, treating over 4 million people and reducing prevalence dramatically.</div>
+        </div>
+        <div class="burden-row">
+          <div class="burden-icon">🎯</div>
+          <div class="burden-txt">The WHO target is to <strong>eliminate HCV as a public health threat by 2030</strong> — a &gt;90% reduction in new infections and &gt;65% reduction in deaths.</div>
+        </div>
+      </div>
+      <div class="card" style="margin-bottom:0;">
+        <div class="card-h"><div class="card-h-dot"></div>Why Egypt Is a Case Study</div>
+        <ul class="blist">
+          <li>Egypt had the <strong style="color:#fff;">highest HCV prevalence</strong> in the world for decades — driven by a national schistosomiasis injection campaign in the 1960s–80s using unsterilized needles</li>
+          <li>Peak prevalence reached <strong style="color:#fff;">~10% of the population</strong> — roughly 9 million people infected</li>
+          <li>The national DAA programme reduced prevalence from ~7% to under 1% in under 5 years</li>
+          <li>Egypt's programme is now cited by the WHO as a <strong style="color:#fff;">global model</strong> for HCV elimination</li>
+          <li>This makes HCV directly relevant to Egyptian public health education at every level</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ KNOWLEDGE QUIZ ════════════════════════════════════════════════ -->
+<section class="section bg-dark" id="quiz">
+  <div class="section-inner">
+    <div class="section-eyebrow fade-up">Test Yourself</div>
+    <h2 class="section-title fade-up">How Much Do<br>You Know?</h2>
+    <p class="fade-up" style="font-size:14px;color:rgba(255,255,255,0.6);margin-bottom:32px;line-height:1.7;max-width:520px;">
+      8 questions covering everything in this brochure — transmission, mechanism, symptoms, detection and treatment. No pressure, just learning.
+    </p>
+
+    <div class="quiz-wrap fade-up">
+      <div class="quiz-prog-bg"><div class="quiz-prog-fill" id="quiz-prog"></div></div>
+      <div class="quiz-q-count" id="quiz-count">Question 1 of 8</div>
+
+      <div class="quiz-card" id="quiz-card">
+        <div class="quiz-q" id="quiz-question"></div>
+        <div class="quiz-opts" id="quiz-opts"></div>
+        <div class="quiz-feedback" id="quiz-feedback"></div>
+        <button class="quiz-next" id="quiz-next" onclick="nextQuestion()">Next Question →</button>
+      </div>
+
+      <div class="quiz-result" id="quiz-result">
+        <div class="quiz-score-big" id="quiz-score-big"></div>
+        <div class="quiz-score-sub" id="quiz-score-sub"></div>
+        <div class="quiz-score-msg" id="quiz-score-msg"></div>
+        <button class="quiz-restart" onclick="startQuiz()">Try Again</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TEAM ══════════════════════════════════════════════════════════ -->
+<section class="section bg-amber" id="team">
+  <div class="section-inner">
+    <div class="section-eyebrow fade-up">The People Behind This</div>
+    <h2 class="section-title fade-up">Our Team</h2>
+
+    <div class="team-grid fade-up">
+      <div class="team-card">
+        <div class="team-avatar" style="background:linear-gradient(135deg,#0F6E56,#1D9E75);">NM</div>
+        <div class="team-name">Nour Maisara</div>
+        <div class="team-role">Virology Content</div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar" style="background:linear-gradient(135deg,#5c3d0a,#B76E2A);">DA</div>
+        <div class="team-name">Dana Ashraf</div>
+        <div class="team-role">Prevention &amp; Detection</div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar" style="background:linear-gradient(135deg,#0d3535,#1D9E9E);">YA</div>
+        <div class="team-name">Youssef Assem</div>
+        <div class="team-role">Mechanism &amp; Pathogenesis</div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar" style="background:linear-gradient(135deg,#2c3510,#639922);">JO</div>
+        <div class="team-name">Johnathan Osama</div>
+        <div class="team-role">Epidemiology</div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar" style="background:linear-gradient(135deg,#3d2d08,#EF9F27);">MS</div>
+        <div class="team-name">Mikhael Samir</div>
+        <div class="team-role">Treatment &amp; Pharmacology</div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar" style="background:linear-gradient(135deg,#0F6E56,#5DCAA5);">JM</div>
+        <div class="team-name">Jana Mohamed</div>
+        <div class="team-role">Awareness &amp; Clinical Slides</div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar" style="background:linear-gradient(135deg,#993C1D,#F0997B);">TM</div>
+        <div class="team-name">Toqa Mohamed</div>
+        <div class="team-role">Symptoms &amp; Clinical Staging</div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar" style="background:linear-gradient(135deg,#0a3d2b,#1D9E75);">PI</div>
+        <div class="team-name">Poula Ishak</div>
+        <div class="team-role">Transmission &amp; Risk Factors</div>
+      </div>
+      <div class="team-card" style="border-color:rgba(239,159,39,0.3);">
+        <div class="team-avatar" style="background:linear-gradient(135deg,#BA7517,#EF9F27);">AM</div>
+        <div class="team-name">Afraim Mario</div>
+        <div class="team-role">Graphic Design · Brochure · Web Development · Content Research</div>
+      </div>
+      <div class="team-card" style="border-color:rgba(255,255,255,0.04);opacity:0.45;">
+        <div class="team-avatar" style="background:rgba(255,255,255,0.06);border:2px dashed rgba(255,255,255,0.15);">?</div>
+        <div class="team-name" style="color:rgba(255,255,255,0.35);">Team Member 10</div>
+        <div class="team-role">—</div>
+      </div>
+    </div>
+
+    <div style="background:rgba(0,0,0,0.25);border-radius:14px;padding:20px 22px;text-align:center;" class="fade-up">
+      <div style="font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:8px;">Under the Supervision of</div>
+      <div style="font-family:'Montserrat',sans-serif;font-size:18px;font-weight:900;color:#fff;margin-bottom:4px;">Dr. Radwa Lotfy</div>
+      <div style="font-size:13px;color:rgba(255,255,255,0.55);">Pathophysiology Course Coordinator · School of Biotechnology · Badr University in Cairo</div>
+    </div>
+  </div>
+</section>
+
 <!-- ═══ FOOTER ═══════════════════════════════════════════════════════ -->
 <footer>
   <div class="footer-inner">
@@ -1388,11 +1767,28 @@ footer {
 </footer>
 
 <script>
+// ── Mobile menu ──────────────────────────────────────────────────
+function toggleMobileMenu() {
+  const menu = document.getElementById('mobile-menu');
+  const btn  = document.getElementById('hamburger');
+  menu.classList.toggle('open');
+  btn.classList.toggle('open');
+  document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+}
+function closeMobileMenu() {
+  document.getElementById('mobile-menu').classList.remove('open');
+  document.getElementById('hamburger').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// ── Back to top ──────────────────────────────────────────────────
+const backTop = document.getElementById('back-top');
+
 // ── Lightbox ──────────────────────────────────────────────────────
 function openLightbox(card) {
-  const img   = card.querySelector('img');
-  const name  = card.querySelector('.slide-name')?.textContent || '';
-  const cap   = card.querySelector('.slide-caption')?.textContent || '';
+  const img  = card.querySelector('img');
+  const name = card.querySelector('.slide-name')?.textContent || '';
+  const cap  = card.querySelector('.slide-caption')?.textContent || '';
   if (!img) return;
   document.getElementById('lightbox-img').src = img.src;
   document.getElementById('lightbox-img').alt = img.alt;
@@ -1405,7 +1801,7 @@ function closeLightbox() {
   document.getElementById('lightbox').classList.remove('open');
   document.body.style.overflow = '';
 }
-document.addEventListener('keydown', e => { if(e.key==='Escape') closeLightbox(); });
+document.addEventListener('keydown', e => { if(e.key==='Escape'){ closeLightbox(); closeMobileMenu(); } });
 
 // ── Scroll progress bar ──────────────────────────────────────────
 const bar = document.getElementById('progress-bar');
@@ -1413,75 +1809,243 @@ function updateBar() {
   const scrolled = window.scrollY;
   const total = document.documentElement.scrollHeight - window.innerHeight;
   bar.style.width = (scrolled / total * 100) + '%';
+  // back to top
+  if (scrolled > 400) backTop.classList.add('visible');
+  else backTop.classList.remove('visible');
 }
 
-// ── Active nav link on scroll ────────────────────────────────────
+// ── Active nav link ──────────────────────────────────────────────
 const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('.nav-links a');
-
 function updateNav() {
   const mid = window.scrollY + window.innerHeight * 0.4;
   sections.forEach(sec => {
-    const top = sec.offsetTop;
-    const bottom = top + sec.offsetHeight;
     const link = document.querySelector(`.nav-links a[href="#${sec.id}"]`);
-    if (link) link.classList.toggle('active', mid >= top && mid < bottom);
+    if (link) link.classList.toggle('active', mid >= sec.offsetTop && mid < sec.offsetTop + sec.offsetHeight);
   });
 }
 
-// ── Intersection observer — fade-ups ─────────────────────────────
-const fadeObserver = new IntersectionObserver((entries) => {
+// ── Counter animation ────────────────────────────────────────────
+function animateCounter(el) {
+  const target = parseInt(el.dataset.count);
+  const prefix = el.dataset.prefix || '';
+  const suffix = el.dataset.suffix || '';
+  let start = 0;
+  const duration = 1600;
+  const step = timestamp => {
+    if (!start) start = timestamp;
+    const progress = Math.min((timestamp - start) / duration, 1);
+    const ease = 1 - Math.pow(1 - progress, 3);
+    el.textContent = prefix + Math.floor(ease * target) + suffix;
+    if (progress < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+
+// ── Epi bar animation ────────────────────────────────────────────
+function animateEpiBars(container) {
+  container.querySelectorAll('.epi-bar').forEach(bar => {
+    setTimeout(() => { bar.style.width = bar.dataset.width + '%'; }, 200);
+  });
+}
+
+// ── Intersection Observer — fade-ups + counters + epi bars ──────
+const fadeObserver = new IntersectionObserver(entries => {
   entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      fadeObserver.unobserve(entry.target); // fire once only
-    }
+    if (!entry.isIntersecting) return;
+    entry.target.classList.add('visible');
+    // counters
+    entry.target.querySelectorAll('[data-count]').forEach(animateCounter);
+    // epi bars
+    if (entry.target.classList.contains('epi-grid')) animateEpiBars(entry.target);
+    fadeObserver.unobserve(entry.target);
   });
 }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
 document.querySelectorAll('.fade-up').forEach(el => fadeObserver.observe(el));
 
-// ── Intersection observer — steps (staggered) ────────────────────
-const stepObserver = new IntersectionObserver((entries) => {
+// hero counters fire on load
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.querySelectorAll('.hero-stat-num[data-count]').forEach(animateCounter);
+  }, 400);
+});
+
+// ── Step observer ────────────────────────────────────────────────
+const stepObserver = new IntersectionObserver(entries => {
   entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      // stagger each step in the same parent container
-      const siblings = entry.target.closest('.step-wrap')
-        ?.querySelectorAll('.step') || [entry.target];
-      siblings.forEach((step, i) => {
-        setTimeout(() => step.classList.add('visible'), i * 110);
-      });
-      stepObserver.unobserve(entry.target);
-    }
+    if (!entry.isIntersecting) return;
+    const steps = entry.target.closest('.step-wrap')?.querySelectorAll('.step') || [entry.target];
+    steps.forEach((step, i) => setTimeout(() => step.classList.add('visible'), i * 110));
+    stepObserver.unobserve(entry.target);
   });
 }, { threshold: 0.15 });
-
-// Observe only the first step in each group to trigger the stagger
 document.querySelectorAll('.step-wrap').forEach(wrap => {
   const first = wrap.querySelector('.step');
   if (first) stepObserver.observe(first);
 });
 
-// ── Smooth scroll for nav links (extra insurance) ─────────────────
+// ── Smooth nav scroll ────────────────────────────────────────────
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
     const target = document.querySelector(a.getAttribute('href'));
-    if (target) {
-      e.preventDefault();
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+    if (target) { e.preventDefault(); target.scrollIntoView({ behavior:'smooth', block:'start' }); }
   });
 });
 
-// ── Combine scroll handlers efficiently ──────────────────────────
-window.addEventListener('scroll', () => {
-  updateBar();
-  updateNav();
-}, { passive: true });
+// ── Scroll handler ───────────────────────────────────────────────
+window.addEventListener('scroll', () => { updateBar(); updateNav(); }, { passive:true });
+updateBar(); updateNav();
 
-// Run once on load
-updateBar();
-updateNav();
+// ════════════════════════════════════════════════════════════════
+// QUIZ ENGINE
+// ════════════════════════════════════════════════════════════════
+const QUESTIONS = [
+  {
+    q: "HCV is classified as which type of virus?",
+    opts: ["Double-stranded DNA virus", "Positive-sense single-stranded RNA virus (+ssRNA)", "Negative-sense RNA virus", "Retrovirus"],
+    correct: 1,
+    explain: "HCV is a +ssRNA enveloped virus belonging to the Flaviviridae family, genus Hepacivirus. Its RNA can be directly translated as mRNA upon entering the cell."
+  },
+  {
+    q: "Which receptor does HCV use to enter hepatocytes?",
+    opts: ["ACE2", "CD4", "CD81 and SR-B1", "TLR4"],
+    correct: 2,
+    explain: "HCV attaches to hepatocytes primarily via CD81 and SR-B1 (scavenger receptor class B type 1). The E2 envelope glycoprotein is responsible for this interaction."
+  },
+  {
+    q: "Why is HCV called a 'silent disease'?",
+    opts: ["It causes no damage to the liver", "Most infected people show no symptoms for years while liver damage progresses", "It only affects the nervous system", "It is always cured by the immune system"],
+    correct: 1,
+    explain: "HCV is called a silent disease because acute infection is usually asymptomatic. Chronic infection may progress for 20–30 years without symptoms while fibrosis and cirrhosis develop silently."
+  },
+  {
+    q: "What is the cure rate of modern Direct-Acting Antiviral (DAA) therapy for HCV?",
+    opts: ["Around 50%", "Around 70%", "Over 95%", "Less than 30%"],
+    correct: 2,
+    explain: "DAA regimens achieve sustained virologic response (SVR — effectively a cure) in over 95% of treated patients within 8–12 weeks, with minimal side effects."
+  },
+  {
+    q: "Which of the following is NOT a route of HCV transmission?",
+    opts: ["Sharing needles", "Blood transfusion with unscreened blood", "Casual contact such as hugging or sharing food", "Needle-stick injuries"],
+    correct: 2,
+    explain: "HCV is transmitted exclusively through direct blood-to-blood contact. It cannot spread through casual contact, sharing food, hugging, coughing, or sneezing."
+  },
+  {
+    q: "Which non-structural protein does Sofosbuvir target?",
+    opts: ["NS3 protease", "NS4B", "NS5A", "NS5B RNA-dependent RNA polymerase"],
+    correct: 3,
+    explain: "Sofosbuvir is a nucleotide analogue inhibitor of NS5B, the RNA-dependent RNA polymerase responsible for replicating the HCV genome. Ledipasvir targets NS5A."
+  },
+  {
+    q: "What histological finding in a liver biopsy is characteristic of — though not specific to — HCV infection?",
+    opts: ["Kupffer cell hypertrophy", "Portal lymphoid aggregates", "Mallory-Denk bodies", "Ballooning degeneration"],
+    correct: 1,
+    explain: "Portal lymphoid aggregates (lymphoid follicles within portal tracts) are characteristic of HCV infection. While not 100% specific, their presence strongly suggests HCV. Mallory-Denk bodies are more associated with alcoholic hepatitis."
+  },
+  {
+    q: "Egypt's national HCV programme is significant because:",
+    opts: ["Egypt discovered HCV in the 1990s", "Egypt launched the world's largest HCV screening and treatment programme, reducing prevalence from ~7% to under 1%", "Egypt was the first country to manufacture DAA drugs", "Egypt has zero HCV cases today"],
+    correct: 1,
+    explain: "Egypt once had the world's highest HCV prevalence — driven by a national schistosomiasis injection campaign using unsterilized needles. The 2018–2019 national programme treated over 4 million people and is now cited by the WHO as a global elimination model."
+  }
+];
+
+let currentQ = 0;
+let score = 0;
+let answered = false;
+
+function startQuiz() {
+  currentQ = 0; score = 0; answered = false;
+  document.getElementById('quiz-result').classList.remove('show');
+  document.getElementById('quiz-card').style.display = 'block';
+  document.getElementById('quiz-prog').style.display = 'block';
+  document.getElementById('quiz-count').style.display = 'block';
+  renderQuestion();
+}
+
+function renderQuestion() {
+  answered = false;
+  const q = QUESTIONS[currentQ];
+  const total = QUESTIONS.length;
+
+  document.getElementById('quiz-prog').style.width = (currentQ / total * 100) + '%';
+  document.getElementById('quiz-count').textContent = `Question ${currentQ + 1} of ${total}`;
+  document.getElementById('quiz-question').textContent = q.q;
+
+  const optsEl = document.getElementById('quiz-opts');
+  optsEl.innerHTML = '';
+  q.opts.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'quiz-opt';
+    btn.innerHTML = `<span class="opt-letter">${['A','B','C','D'][i]}</span>${opt}`;
+    btn.onclick = () => selectAnswer(i);
+    optsEl.appendChild(btn);
+  });
+
+  const fb = document.getElementById('quiz-feedback');
+  fb.className = 'quiz-feedback';
+  fb.textContent = '';
+
+  const nxt = document.getElementById('quiz-next');
+  nxt.className = 'quiz-next';
+  nxt.textContent = currentQ < QUESTIONS.length - 1 ? 'Next Question →' : 'See Results →';
+}
+
+function selectAnswer(idx) {
+  if (answered) return;
+  answered = true;
+  const q = QUESTIONS[currentQ];
+  const opts = document.querySelectorAll('.quiz-opt');
+
+  opts.forEach((btn, i) => {
+    btn.disabled = true;
+    if (i === q.correct) btn.classList.add('correct');
+    else if (i === idx)  btn.classList.add('wrong');
+  });
+
+  const fb = document.getElementById('quiz-feedback');
+  if (idx === q.correct) {
+    score++;
+    fb.className = 'quiz-feedback ok show';
+    fb.innerHTML = '✓ Correct! ' + q.explain;
+  } else {
+    fb.className = 'quiz-feedback bad show';
+    fb.innerHTML = '✗ Not quite. ' + q.explain;
+  }
+
+  document.getElementById('quiz-next').classList.add('show');
+}
+
+function nextQuestion() {
+  currentQ++;
+  if (currentQ >= QUESTIONS.length) {
+    showResult();
+  } else {
+    renderQuestion();
+  }
+}
+
+function showResult() {
+  document.getElementById('quiz-card').style.display = 'none';
+  document.getElementById('quiz-prog').style.width = '100%';
+
+  const pct = Math.round(score / QUESTIONS.length * 100);
+  const result = document.getElementById('quiz-result');
+  document.getElementById('quiz-score-big').textContent = score + '/' + QUESTIONS.length;
+  document.getElementById('quiz-score-sub').textContent = pct + '% correct';
+
+  let msg = '';
+  if (pct === 100) msg = 'Perfect score! You have a thorough understanding of HCV — from its +ssRNA genome to Egypt\'s national elimination programme. Outstanding.';
+  else if (pct >= 75) msg = 'Great work — you clearly paid attention to the key concepts. Review the questions you missed and you\'ll have a complete picture of HCV.';
+  else if (pct >= 50) msg = 'Good start. You\'ve got the basics down. Go back through the mechanism and virology sections to strengthen the gaps.';
+  else msg = 'Keep going — HCV is complex. Review the pathophysiology and detection sections, then come back and try again.';
+
+  document.getElementById('quiz-score-msg').textContent = msg;
+  result.classList.add('show');
+}
+
+// Start quiz on load
+startQuiz();
 </script>
 </body>
 </html>
